@@ -31,11 +31,11 @@ const Form = ({ currentId, setCurrentId }) => {
         console.log("Submit clicked!")
         if(currentId){
             console.log(currentId)
-           dispatch(updatePost(currentId,{...postData, name: user?.result?.name})); 
+           dispatch(updatePost(currentId,{...postData, name: user?.user?.name})); 
 
         }else{
            
-           dispatch(createPost({...postData, name: user?.result?.name}))
+           dispatch(createPost({...postData, name: user?.user?.name}))
             .then(()=>{console.log("Post created!")}); 
 
         }
@@ -100,7 +100,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     }} 
                     fullWidth 
                     value={postData.tags}
-                    onChange={(event) => setPostData({...postData, tags: event.target.value.split(',')})}
+                    onChange={(event) => setPostData({...postData, tags: event.target.value})}
                 />
                 <div className={classes.fileInput}>
                      <FileBase

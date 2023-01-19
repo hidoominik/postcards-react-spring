@@ -35,7 +35,8 @@ public class Post {
 
     @Column
     private String tags;
-
+    @Column
+    private String creator;
     @Column
     private LocalDateTime createdAt;
 
