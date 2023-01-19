@@ -29,6 +29,9 @@ public class Post {
 
     @Column
     private String message;
+    @Column
+
+    private String selectedFile;
 
     @Column
     private String tags;

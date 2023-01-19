@@ -1,5 +1,6 @@
 package com.example.server.config;
 
+import com.example.server.entities.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,10 +10,10 @@ public class JwtResponse {
 
     private String token;
     private String type = "Bearer";
-    private String login;
+    private User user;
 
-    public JwtResponse(String accessToken, String login) {
+    public JwtResponse(User user,String accessToken ) {
         this.token = accessToken;
-        this.login = login;
+        this.user = user;
     }
 }

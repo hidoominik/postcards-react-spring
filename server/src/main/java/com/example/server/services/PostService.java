@@ -2,6 +2,7 @@ package com.example.server.services;
 
 import com.example.server.entities.Post;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PostService {
@@ -11,4 +12,5 @@ public interface PostService {
     void delete(Post task);
 
     Optional<Post> findById(int id);
-}
+    List<Post> findAll();
+ }

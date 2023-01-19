@@ -1,5 +1,6 @@
 package com.example.server.services;
 
+import com.example.server.entities.LoginRequest;
 import com.example.server.entities.User;
 import com.example.server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    public User save(LoginRequest loginRequest) {
+        User user = new User();
+        user.setEmail(loginRequest.getEmail());
+
+        user.setName(loginRequest.getFirstName() + " " + loginRequest.getLastName());
+        user.setPassword(bCryptPasswordEncoder.encode(loginRequest.getPassword()));
         return userRepository.save(user);
     }
 }

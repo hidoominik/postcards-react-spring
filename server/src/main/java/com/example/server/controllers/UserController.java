@@ -31,7 +31,7 @@ public class UserController {
         this.jwtProvider = jwtProvider;
     }
 
-    @PostMapping( "/user/singin")
+    @PostMapping( "/user/signin")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
@@ -43,13 +43,14 @@ public class UserController {
 
         String jwtToken = jwtProvider.generateJwtToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.findByEmail(email).orElseThrow(RuntimeException::new);
 
-        return ResponseEntity.ok(new JwtResponse(jwtToken, userDetails.getUsername()));
+        return ResponseEntity.ok(new JwtResponse(user, jwtToken));
     }
 
     @PostMapping("/user/signup")
-    public ResponseEntity<?> register(@RequestBody User user){
+    public ResponseEntity<?> register(@RequestBody LoginRequest loginRequest){
 
-        return ResponseEntity.ok(userService.save(user));
+        return ResponseEntity.ok(userService.save(loginRequest));
     }
 }
