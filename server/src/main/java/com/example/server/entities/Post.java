@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -29,8 +30,8 @@ public class Post {
 
     @Column
     private String message;
-    @Column
 
+    @Column(length = 1000000000)
     private String selectedFile;
 
     @Column
