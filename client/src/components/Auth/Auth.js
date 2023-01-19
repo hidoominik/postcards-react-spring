@@ -23,8 +23,10 @@ const Auth = () => {
         e.preventDefault();
         
         if(isSignup){
+            console.log(formData);
             dispatch(signup(formData,navigate))
         }else{
+            console.log(formData);
             dispatch(signin(formData,navigate))
         }
     };
