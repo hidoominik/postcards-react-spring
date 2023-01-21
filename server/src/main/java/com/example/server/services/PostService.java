@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface PostService {
     Post save(Post post);
-    Post edit(Post previousPost, Post editedPost);
+    Post edit(Post newPostData, Long editedPostId);
     Post editStatus(Post task);
-    void delete(Post task);
+    void delete(Long postId);
 
     Optional<Post> findById(int id);
     List<Post> findAll();

@@ -5,6 +5,7 @@ import com.example.server.entities.JwtResponse;
 import com.example.server.entities.LoginRequest;
 import com.example.server.entities.User;
 import com.example.server.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 //@CrossOrigin(origins = "*")
@@ -50,6 +53,12 @@ public class UserController {
 
     @PostMapping("/user/signup")
     public ResponseEntity<?> register(@RequestBody LoginRequest loginRequest){
+        String email = loginRequest.getEmail();
+        Optional<User> user = userService.findByEmail(email);
+        if(user.isPresent()) return new ResponseEntity<>("Current email is already in use!", HttpStatus.BAD_REQUEST);
+        String password = loginRequest.getPassword();
+        String confirmPassword = loginRequest.getConfirmPassword();
+        if(!password.equals(confirmPassword)) return new ResponseEntity<>("Passwords dont match!", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(userService.save(loginRequest));
     }

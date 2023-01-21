@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Integer> {
     Optional<Post> findById(Long id);
     Boolean existsById(Long id);
+
 }

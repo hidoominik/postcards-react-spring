@@ -4,11 +4,9 @@ import com.example.server.entities.Post;
 import com.example.server.entities.User;
 import com.example.server.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PostController {
@@ -31,5 +29,15 @@ public class PostController {
         return ResponseEntity.ok(postService.findAll());
     }
 
+    @DeleteMapping("/posts/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable Long id){
+        postService.delete(id);
+        return new ResponseEntity<>("Post deleted", HttpStatus.OK);
+    }
+
+    @PatchMapping("/posts/{id}")
+    public ResponseEntity<?> updatePost(@PathVariable Long id, @RequestBody Post updatedPost){
+        return new ResponseEntity<>(postService.edit(updatedPost, id), HttpStatus.OK);
+    }
 
 }

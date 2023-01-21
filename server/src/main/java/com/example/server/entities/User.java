@@ -41,11 +41,11 @@ public class User {
     private String roles = "ROLE_USER";
 
     @JsonIgnore
-    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="creator", cascade = CascadeType.ALL)
     private Set<Post> postSet = new HashSet<>();
 
-    public void addTask(Post post) {
+    public void addPost(Post post) {
         postSet.add(post);
-        post.setUser(this);
+        post.setCreator(this);
     }
 }

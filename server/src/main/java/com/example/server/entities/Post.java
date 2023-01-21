@@ -1,6 +1,7 @@
 package com.example.server.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,13 +37,14 @@ public class Post {
 
     @Column
     private String tags;
-    @Column
-    private String creator;
+//    @Column
+//    private int creator;
+
     @Column
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName="id")
-    @JsonIgnore
-    private User user;
+    @JoinColumn(name = "creator", referencedColumnName="id")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private User creator;
 }

@@ -12,5 +12,6 @@ public interface UserService {
     User save(LoginRequest loginRequest);
 //    Boolean existsByEmail(String email);
 //    void delete(User user);
+    Optional<User> findByName(String name);
 
 }

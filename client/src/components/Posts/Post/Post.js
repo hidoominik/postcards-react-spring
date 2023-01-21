@@ -19,7 +19,7 @@ const Post = ({ post, setCurrentId }) => {
 
     // const Likes = () => {
     //     if (post.likes.length > 0) {
-    //       return post.likes.find((like) => like === user?.user?._id)
+    //       return post.likes.find((like) => like === user?.user?.id)
     //         ? (
     //           <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
     //         ) : (
@@ -39,12 +39,13 @@ const Post = ({ post, setCurrentId }) => {
             </div>
 
             {
-                (user?.user?._id === post?.creator) && (
+                // console.log(post?.creator)
+                (user?.user?.id === post?.creator.id) && (
                     <div className={classes.overlay2}>
                         <Button 
                             style={{color: 'white'}} 
                             size="small" 
-                            onClick={() =>  setCurrentId(post._id)}>
+                            onClick={() =>  setCurrentId(post.id)}>
                             <MoreHorizIcon fontSize = "medium"/>
                         </Button>
                     </div>
@@ -61,13 +62,13 @@ const Post = ({ post, setCurrentId }) => {
             </CardContent>
             <CardActions>
 
-                {/* <Button size="small" style={{color: 'white'}}  disabled={!user?.user} onClick={() => dispatch(likePost(post._id))}>
+                {/* <Button size="small" style={{color: 'white'}}  disabled={!user?.user} onClick={() => dispatch(likePost(post.id))}>
                     <Likes />
 
                 </Button> */}
                 {
-                    (user?.user?.id === post?.creator) && (
-                          <Button size="small" color='secondary'  onClick={() => dispatch(deletePost(post._id))}>
+                    (user?.user?.id === post?.creator.id) && (
+                          <Button size="small" color='secondary'  onClick={() => dispatch(deletePost(post.id))}>
                                  <DeleteIcon fontSize="small"/>
                                  Delete   
                         </Button>

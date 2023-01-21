@@ -20,10 +20,12 @@ public class LoginRequest {
     @Size(min = 5, max = 45, message = "{user.email.size}")
     @NotBlank(message = "{user.email.notBlank}")
     private String email;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false, length = 1000)
     @NotBlank(message = "{user.password.notBlank}")
     private String password;
+
     private String confirmPassword;
     private String firstName;
     private String lastName;
