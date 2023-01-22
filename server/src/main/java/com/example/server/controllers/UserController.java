@@ -54,6 +54,12 @@ public class UserController {
     @PostMapping("/user/signup")
     public ResponseEntity<?> register(@RequestBody LoginRequest loginRequest){
         String email = loginRequest.getEmail();
+        String firstName = loginRequest.getFirstName();
+        if(!firstName.matches("[A-Z][a-z]*")) return new ResponseEntity<>("First name have bad format!", HttpStatus.BAD_REQUEST);
+
+        String lastName = loginRequest.getLastName();
+        if(!lastName.matches("[A-Z][a-z]*")) return new ResponseEntity<>("Last name have bad format!", HttpStatus.BAD_REQUEST);
+
         Optional<User> user = userService.findByEmail(email);
         if(user.isPresent()) return new ResponseEntity<>("Current email is already in use!", HttpStatus.BAD_REQUEST);
         String password = loginRequest.getPassword();

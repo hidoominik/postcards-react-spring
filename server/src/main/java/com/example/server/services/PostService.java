@@ -11,6 +11,6 @@ public interface PostService {
     Post editStatus(Post task);
     void delete(Long postId);
 
-    Optional<Post> findById(int id);
+    Optional<Post> findById(Long id);
     List<Post> findAll();
  }

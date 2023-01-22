@@ -21,6 +21,8 @@ export const createPost = (post) => async(dispatch) => {
         dispatch({type: CREATE, payload: data });
     } catch (error) {
         console.log(error)
+        window.alert(error.response.data);
+       
     }
 }
 
@@ -35,6 +37,7 @@ export const updatePost = (id, post) => async(dispatch) => {
     } catch (error) {
       
         console.log(error)
+        window.alert(error.response.data);
     }
 }
 
@@ -47,7 +50,7 @@ export const deletePost = (id) => async(dispatch) => {
     } catch (error) {
 
         console.log(error)
-        
+        window.alert(error.response.data);
     }
 }
 
@@ -58,5 +61,6 @@ export const likePost = (id) => async(dispatch) => {
 
     } catch (error) {
         console.log(error);
+        window.alert(error.response.data);
     }
 }

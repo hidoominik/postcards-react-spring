@@ -31,12 +31,13 @@ const Form = ({ currentId, setCurrentId }) => {
         console.log("Submit clicked!")
         if(currentId){
             console.log(currentId)
-           dispatch(updatePost(currentId,{...postData, name: user?.user?.name})); 
+           dispatch(updatePost(currentId,{...postData, name: user?.user?.name}));
+           
 
         }else{
            
            dispatch(createPost({...postData, name: user?.user?.name}))
-            .then(()=>{console.log("Post created!")}); 
+           
 
         }
          clear();
@@ -70,6 +71,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     name = "title" 
                     variant = "outlined" 
                     label="Title"
+                    required
                     inputProps={{
                         className: classes.multilineColor
                     }} 
@@ -83,6 +85,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     variant = "outlined"
                     style={{color: 'white'}} 
                     label="Message"
+                    required
                     inputProps={{
                         className: classes.multilineColor
                     }} 
